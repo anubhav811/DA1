@@ -1,0 +1,10 @@
+  // students[0].setCourses(new Course[] { courses[0], courses[1], courses[2], courses[4] });
+        // students[1].setCourses(new Course[] { courses[3], courses[4], courses[5], courses[6] });
+        // students[2].setCourses(new Course[] { courses[7], courses[8], courses[9], courses[0] });
+        // students[3].setCourses(new Course[] { courses[1], courses[2], courses[3], courses[4] });
+        // students[4].setCourses(new Course[] { courses[5], courses[6], courses[7], courses[8] });
+        // students[5].setCourses(new Course[] { courses[9], courses[0], courses[1], courses[2] });
+        // students[6].setCourses(new Course[] { courses[3], courses[4], courses[5], courses[6] });
+        // students[7].setCourses(new Course[] { courses[7], courses[8], courses[9], courses[0] });
+        // students[8].setCourses(new Course[] { courses[1], courses[2], courses[3], courses[4] });
+        // students[9].setCourses(new Course[] { courses[5], courses[6], courses[7], courses[8] });
