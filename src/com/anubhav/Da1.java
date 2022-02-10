@@ -173,11 +173,10 @@ public class Da1 {
                             System.out.println("\nCourse already allocated");
                             check = true;
                         }
-                    } else if(!(coCode.contains(cn))) {
+                    } else if (!(coCode.contains(cn))) {
                         System.out.println("\nCourse code does not exist !");
-                    }
-                    else{
-                        check=false;
+                    } else {
+                        check = false;
                     }
                 }
             }
@@ -188,26 +187,29 @@ public class Da1 {
 
         System.out.println("Courses Allocation complete for all students\n");
 
-        System.out.println("\t\t------");
-        System.out.println("\t\t MENU");
-        System.out.println("\t\t------");
-        System.out.println("1. Print all students' details");
-        System.out.println("2. Print students who have registered for same courses' details");
-        System.out.println("3. Print students results");
-        System.out.println("4. Exit Program");
-        System.out.println("\nEnter your choice below:");
+        int choice = 0;
+        do {
+            System.out.println("\t\t------");
+            System.out.println("\t\t MENU");
+            System.out.println("\t\t------");
+            System.out.println("1. Print all students' details");
+            System.out.println("2. Print students who have registered for same courses' details");
+            System.out.println("3. Print students results");
+            System.out.println("4. Exit Program");
+            System.out.println("\nEnter your choice below:");
 
-        int choice = sc.nextInt();
-
-        while (choice != 4) {
+            choice = sc.nextInt();
             switch (choice) {
                 case 1:
+                    System.out.println();
                     printStudentDetails(students);
                     break;
                 case 2:
+                    System.out.println();
                     studentsWithSameCourse(students);
                     break;
                 case 3:
+                    System.out.println();
                     studentsResult(students);
                     break;
                 case 4:
@@ -216,7 +218,7 @@ public class Da1 {
                 default:
                     System.out.println("\nInvalid choice");
             }
-        }
+        } while (choice != 4);
 
         // Allocating courses to students.
 
@@ -237,7 +239,6 @@ public class Da1 {
         for (Student s : students) {
             System.out.println(s.toString());
         }
-        return;
     }
 
     static void studentsWithSameCourse(Student[] students) {

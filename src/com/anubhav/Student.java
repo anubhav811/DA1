@@ -9,21 +9,9 @@ public class Student {
     private String address;
     private String mobileNo;
     private ArrayList<Course> allotedCourses = new ArrayList<Course>(); // an arraylist of type "Course".
-    private int totalCredits; // total credits of all the courses.
-    private int[] marks; // int array to store marks.
-    private char[] grades; // char array to store grades.
-
-    // Constructor for Student
-    // public Student()
-    // throws InstantiationException {
-
-    // // I have declared this exception to throw it in case of invalid input.
-    // // this.regNo = regNo;
-    // // this.name = name;
-    // // this.dob = dob;
-    // // this.address = address;
-    // // this.mobileNo = mobileNo;
-    // }
+    private int totalCredits;   // total credits of all the courses.
+    private int[] marks;        // int array to store marks.
+    private char[] grades;      // char array to store grades.
 
     // Mutator methods
     public void setRegNo(String regNo) {
@@ -46,9 +34,6 @@ public class Student {
         this.mobileNo = mobileNo;
     }
 
-    // this method will set the courses for the respective student and also check if
-    // total no of credits are invalid or not.
-
     // Method to populate the marks array with random values between 0 and 100.
     public void setMarks() {
         Random rand = new Random();
@@ -57,7 +42,8 @@ public class Student {
             this.marks[i] = rand.nextInt(100);
         }
     }
-
+    
+    // Method to populate grades array according to marks
     public void setGrades() {
         this.grades = new char[marks.length];
         for (int i = 0; i < marks.length; i++) {
@@ -75,8 +61,24 @@ public class Student {
         }
     }
 
-    // Accessor methods
+    // Method to add a new course to allocated courses
+    public void addCourse(Course course) {
+        this.allotedCourses.add(course);
+        this.totalCredits += course.getCredits();
+    }
 
+    // Method to check if a course is already allocated to the student
+    public boolean isCourseAllocated(String cc) {
+        for (Course c : allotedCourses) {
+            if (c.getCourseCode().equals(cc)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Accessor methods
     public String getRegNo() {
         return regNo;
     }
@@ -101,6 +103,7 @@ public class Student {
         return allotedCourses;
     }
 
+    // Method to return alloted courses in string format
     public String getAllotedCoursesString() {
         ArrayList<Course> courses = getAllotedCourses();
         StringBuilder sb = new StringBuilder();
@@ -157,21 +160,6 @@ public class Student {
                 + "\n\nAlloted Courses ="
                 + courses + "\n-------------------------------------";
 
-    }
-
-    public boolean isCourseAllocated(String cc) {
-        for (Course c : allotedCourses) {
-            if (c.getCourseCode().equals(cc)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public void addCourse(Course course) {
-        this.allotedCourses.add(course);
-        this.totalCredits += course.getCredits();
     }
 
 }
