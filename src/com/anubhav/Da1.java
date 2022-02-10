@@ -2,65 +2,54 @@
 // Anubhav Chachra
 // 20BIT0104
 
-package com.anubhav;
-
 import java.text.*;
 import java.util.*;
-import com.anubhav.*;
 
 public class Da1 {
 
     // Constants
-    final static int minCredit = 12;
-    final static int maxCredit = 24;
-
-    static String[] coName;
-    static String[] coCode;
+    final static int minCredit = 2;
+    final static int maxCredit = 8;
 
     public static void main(String[] args) throws InstantiationException {
 
-        // Declaring students and courses arrayss.
-
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number of students");
+        System.out.println("\nADDING STUDENT DETAILS");
+        System.out.println("........................");
+        System.out.println("\nEnter number of students in system");
         int n = sc.nextInt();
 
         Student[] students = new Student[n];
-        String[] reg = new String[n];
-        for (int i = 0; i < n; i++) {
-            reg[i] = "";
-        }
-
+        ArrayList<String> reg = new ArrayList<>();
         boolean flag = false;
 
         // Populating students array with student objects.
         for (int s = 0; s < n; s++) {
 
-            students[s] = new Student("", "", new Date(), "", "");
+            students[s] = new Student();
 
+            flag = false;
             while (!flag) {
-                System.out.println("Enter register no: ");
-                String regNo = sc.nextLine();
-                for (String rgn : reg) {
-                    if (rgn.equals(regNo)) {
-                        System.out.println("Register no already exists");
-                    } else {
-                        rgn = regNo;
-                        flag = true;
-                        students[s].setRegNo(regNo);
-                    }
+                System.out.println("Enter register no for student " + (s + 1) + " : ");
+                String regNo = sc.next();
+                if (reg.contains(regNo)) {
+                    System.out.println("Register no already exists");
+                } else {
+                    reg.add(regNo);
+                    flag = true;
+                    students[s].setRegNo(regNo);
                 }
             }
 
-            System.out.println("Enter Name: ");
-            String name = sc.nextLine();
+            System.out.println("Enter Name for student " + (s + 1) + " : ");
+            String name = sc.next();
             students[s].setName(name);
 
             Date dob = null;
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            System.out.println("Enter DOB (dd/MM/yyyy) : ");
-            String input = sc.nextLine();
+            System.out.println("Enter DOB (dd/MM/yyyy) for student " + (s + 1) + " : ");
+            String input = sc.next();
             if (null != input && input.trim().length() > 0) {
                 try {
                     dob = format.parse(input);
@@ -71,62 +60,61 @@ public class Da1 {
 
             students[s].setDob(dob);
 
-            System.out.println("Enter Address: ");
-            String addresString = sc.nextLine();
+            System.out.println("Enter Address for student " + (s + 1) + " : ");
+            String addresString = sc.next();
             students[s].setAddress(addresString);
 
-            System.out.println("Enter Mobile no: ");
-            String mobileNo = sc.nextLine();
+            System.out.println("Enter Mobile no for student " + (s + 1) + " : ");
+            String mobileNo = sc.next();
             students[s].setMobileNo(mobileNo);
         }
 
         flag = false;
-        System.out.println("Enter number of courses");
+
+        System.out.println("\nADDING COURSES");
+        System.out.println(".....................");
+        System.out.println("\nEnter number of courses");
         int c = sc.nextInt();
-        Course[] courses = new Course[c];
-        coName = new String[c];
-        coCode = new String[c];
+
+        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<String> coName = new ArrayList<>();
+        ArrayList<String> coCode = new ArrayList<>();
 
         // Populating courses array with course objects.
         for (int i = 0; i < c; i++) {
-
-            courses[i] = new Course("", "", 0);
-
+            courses.add(new Course());
+            flag = false;
             while (!flag) {
-                System.out.println("Enter course code: ");
-                String courseCode = sc.nextLine();
-                for (String str : coCode) {
-                    if (str == courseCode) {
-                        System.out.println("Course code already exists");
-                    } else {
-                        str = courseCode;
-                        flag = true;
-                        courses[i].setCourseCode(courseCode);
-                    }
+                System.out.println("Enter course code for course " + (i + 1) + ": ");
+                String courseCode = sc.next();
+                if (coCode.contains(courseCode)) {
+                    System.out.println("Course code already exists");
+                } else {
+                    coCode.add(courseCode);
+                    flag = true;
+                    courses.get(i).setCourseCode(courseCode);
                 }
             }
 
             flag = false;
             while (!flag) {
-                System.out.println("Enter course name: ");
-                String courseName = sc.nextLine();
-                for (String str : coName) {
-                    if (str == courseName) {
-                        System.out.println("Course name already exists");
-                    } else {
-                        str = courseName;
-                        flag = true;
-                        courses[i].setCourseName(courseName);
-                    }
+                System.out.println("Enter course name for course " + (i + 1) + ":");
+                String courseName = sc.next();
+                if (coName.contains(courseName)) {
+                    System.out.println("Course name already exists");
+                } else {
+                    coName.add(courseName);
+                    flag = true;
+                    courses.get(i).setCourseName(courseName);
                 }
             }
 
             flag = false;
             while (!flag) {
-                System.out.println("Enter course credits: ");
+                System.out.println("Enter course credits for coures " + (i + 1) + ":");
                 int courseCredits = sc.nextInt();
                 if (courseCredits == 3 || courseCredits == 4) {
-                    courses[i].setCredits(courseCredits);
+                    courses.get(i).setCredits(courseCredits);
                     flag = true;
                 } else {
                     System.out.println("Course credits can be either 3 or 4");
@@ -134,72 +122,112 @@ public class Da1 {
             }
         }
 
-        // Allocating courses to students
-
+        System.out.println("\nALLOCATING COURSES");
+        System.out.println(".......................");
         for (int a = 0; a < students.length; a++) {
-            System.out.println("Allocating course for Student " + (a + 1));
-            System.out.println("Select the course code of the course you want to register :\n");
+            System.out.println("\nFor student " + (a + 1) + "");
+            System.out.println("-----------------------------");
+            System.out.println("Select the course code of the course you want toregister:\n");
             for (Course cr : courses) {
                 System.out.println(cr.toString());
             }
 
-            String cn;
-            int noOfCourse = 0;
-            boolean check = false;
+            boolean check = true;
 
-            while (!check) {
-                for (int i = 0; i < courses.length; i++) {
+            while (check) {
+
+                for (int i = 0; i < courses.size(); i++) {
+                    System.out.println("Total credits registered : " +
+                            students[a].getTotalCredits());
                     System.out.println("Enter course code: ");
-                    cn = sc.next();
+                    String cn = sc.next();
 
-                    if (courses[i].getCourseName().equals(cn) && !students[a].isCourseAllocated(cn)) {
-                        if ((students[a].getTotalCredits() < minCredit) && (students[a].getTotalCredits() > 0)) {
-                            System.out.println("You have not registered for min no credits i.e 12 , yet");
-                            students[a].setCourses(courses[i]);
-                            noOfCourse++;
-                            System.out.println("Course allocated successfully ! . Total credits : "
-                                    + students[a].getTotalCredits());
+                    if (coCode.contains(cn)) {
+                        if (!(students[a].isCourseAllocated(cn))) {
+
+                            if (students[a].getTotalCredits() < minCredit) {
+
+                                students[a].addCourse(courses.get(coCode.indexOf(cn)));
+                                System.out.println("Course allocated successfully ! .\n");
+                            } else if (students[a].getTotalCredits() >= maxCredit) {
+                                System.out.println("\nYou have registered for max no credits.\n");
+                                check = false;
+
+                            } else if ((students[a].getTotalCredits() >= minCredit)
+                                    && (students[a].getTotalCredits() < maxCredit)) {
+                                coCode.indexOf(cn);
+                                students[a].addCourse(courses.get(coCode.indexOf(cn)));
+                                System.out.println("\nCourse allocated successfully ! .\n");
+
+                                System.out.println("\nTotal credits registered : " +
+                                        students[a].getTotalCredits());
+                                System.out.println(
+                                        "You have registered your minimum no of credits. Do you want to register formore credits? (y/n)");
+                                String ans = sc.next();
+                                if (ans.equalsIgnoreCase("y")) {
+                                } else if (ans.equalsIgnoreCase("n")) {
+                                    check = false;
+                                }
+                            }
+                        } else if ((students[a].isCourseAllocated(cn))) {
+                            System.out.println("\nCourse already allocated");
                             check = true;
                         }
-
-                        if (students[a].getTotalCredits() >= maxCredit) {
-                            System.out.println("You have registered for max no credits i.e 24");
-                            check = false;
-                        }
-
-                    } else if (students[a].isCourseAllocated(cn)) {
-                        System.out.println("Course already allocated !");
-                        check = true;
-                    } else {
-                        System.out.println("Course code does not exist !");
-                        check = true;
+                    } else if(!(coCode.contains(cn))) {
+                        System.out.println("\nCourse code does not exist !");
+                    }
+                    else{
+                        check=false;
                     }
                 }
+            }
 
+            System.out.println("Courses Allocated for student " + (a + 1) + "\n");
+
+        }
+
+        System.out.println("Courses Allocation complete for all students\n");
+
+        System.out.println("\t\t------");
+        System.out.println("\t\t MENU");
+        System.out.println("\t\t------");
+        System.out.println("1. Print all students' details");
+        System.out.println("2. Print students who have registered for same courses' details");
+        System.out.println("3. Print students results");
+        System.out.println("4. Exit Program");
+        System.out.println("\nEnter your choice below:");
+
+        int choice = sc.nextInt();
+
+        while (choice != 4) {
+            switch (choice) {
+                case 1:
+                    printStudentDetails(students);
+                    break;
+                case 2:
+                    studentsWithSameCourse(students);
+                    break;
+                case 3:
+                    studentsResult(students);
+                    break;
+                case 4:
+                    choice = 4;
+                    System.exit(0);
+                default:
+                    System.out.println("\nInvalid choice");
             }
         }
 
         // Allocating courses to students.
 
-        // courses[0] = new Course("CSE1002", "OOPS", 3);
-        // courses[1] = new Course("ITE1015", "SwE", 3);
-        // courses[2] = new Course("MAT2001", "Calc", 4);
-        // courses[3] = new Course("MAT3004", "Ala", 4);
-        // courses[4] = new Course("CSE1007", "Java", 3);
-        // courses[5] = new Course("ITE1004", "DSA", 3);
-        // courses[6] = new Course("ITE2002", "OS", 4);
-        // courses[7] = new Course("ITE3001", "DCCN", 4);
-        // courses[8] = new Course("ITE1003", "DLM", 4);
-        // courses[9] = new Course("ITE3002", "CAO", 3);
-
-        sc.close();
-        // Displaying students details.
+        // sc.close();
+        // // Displaying students details.
         // printStudentDetails(students);
 
-        // // Students who have registered for the same courses.
-        // studentsWithSameCourse(students);
+        // // // Students who have registered for the same courses.
+        // // studentsWithSameCourse(students);
 
-        // // Results of students
+        // // // Results of students
         // studentResult(students);
 
         // End of main method.
@@ -209,6 +237,7 @@ public class Da1 {
         for (Student s : students) {
             System.out.println(s.toString());
         }
+        return;
     }
 
     static void studentsWithSameCourse(Student[] students) {
@@ -235,7 +264,7 @@ public class Da1 {
         }
     }
 
-    static void studentResult(Student[] students) {
+    static void studentsResult(Student[] students) {
         for (Student s : students) {
             s.setMarks();
             s.setGrades();
@@ -255,8 +284,8 @@ public class Da1 {
 
 // students[0] = new Student("001", "Anubhav", "08/11/2001", "Faridabad",
 // "7217818288");
-// students[1] = new Student("002", "Bhavik", "2/2/2001", "Gujarat",
-// "9876543210");
+// students[1] = new Student("002", "Bhavik", new Date(02/02/2001), "Gujarat",
+// "97876543210");
 // students[2] = new Student("003", "Chetan", "3/3/2002", "Mumbai",
 // "9451562948");
 // students[3] = new Student("004", "Dheeraj", "4/4/2001", "Chennai",
@@ -304,21 +333,3 @@ public class Da1 {
 // courses[4] });
 // students[9].setCourses(new Course[] { courses[5], courses[6], courses[7],
 // courses[8] });
-
-// students[1] = new Student("002", "Bhavik", new Date(02/02/2001), "Gujarat",
-// "97876543210");
-// students[2] = new Student("003", "Chetan", "3/3/2002", "Mumbai",
-// "9451562948");
-// students[3] = new Student("004", "Dheeraj", "4/4/2001", "Chennai",
-// "7811556181");
-// students[4] = new Student("005", "Eshan", "5/5/2002", "Delhi", "9894533210");
-// students[5] = new Student("006", "Farhan", "6/6/2001", "Lucknow",
-// "7893254160");
-// students[6] = new Student("007", "Gauri", "7/7/2002", "Punjab",
-// "9899955210");
-// students[7] = new Student("008", "Harsh", "8/8/2001", "Kerela",
-// "9786453021");
-// students[8] = new Student("009", "Ishank", "9/9/2002", "Tamil Nadu",
-// "8523697410");
-// students[9] = new Student("010", "Jasmine", "10/10/2001", "West Bengal",
-// "7987654321");

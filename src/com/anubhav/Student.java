@@ -1,4 +1,3 @@
-package com.anubhav;
 
 import java.util.*;
 
@@ -15,16 +14,16 @@ public class Student {
     private char[] grades; // char array to store grades.
 
     // Constructor for Student
-    public Student(String regNo, String name, Date dob, String address, String mobileNo)
-            throws InstantiationException {
+    // public Student()
+    // throws InstantiationException {
 
-        // I have declared this exception to throw it in case of invalid input.
-        this.regNo = regNo;
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.mobileNo = mobileNo;
-    }
+    // // I have declared this exception to throw it in case of invalid input.
+    // // this.regNo = regNo;
+    // // this.name = name;
+    // // this.dob = dob;
+    // // this.address = address;
+    // // this.mobileNo = mobileNo;
+    // }
 
     // Mutator methods
     public void setRegNo(String regNo) {
@@ -49,14 +48,6 @@ public class Student {
 
     // this method will set the courses for the respective student and also check if
     // total no of credits are invalid or not.
-    public void setCourses(Course course) throws InstantiationException {
-
-        allotedCourses.add(course);
-        for (Course c : allotedCourses) {
-            this.totalCredits += c.getCredits();
-        }
-
-    }
 
     // Method to populate the marks array with random values between 0 and 100.
     public void setMarks() {
@@ -128,7 +119,6 @@ public class Student {
     }
 
     public int getTotalCredits() {
-
         return totalCredits;
     }
 
@@ -170,12 +160,18 @@ public class Student {
     }
 
     public boolean isCourseAllocated(String cc) {
-        for (int ac = 0; ac < allotedCourses.size(); ac++) {
-            if (allotedCourses.get(ac).getCourseCode().equals(cc)) {
+        for (Course c : allotedCourses) {
+            if (c.getCourseCode().equals(cc)) {
                 return true;
             }
         }
+
         return false;
+    }
+
+    public void addCourse(Course course) {
+        this.allotedCourses.add(course);
+        this.totalCredits += course.getCredits();
     }
 
 }

@@ -1,16 +1,16 @@
-package com.anubhav;
+
 
 public class Course {
     private String courseCode;
     private String courseName;
     private int credits;
 
-    // Constructor for Course class.
-    public Course(String courseCode, String courseName, int credits) {
-        this.courseCode = courseCode;
-        this.courseName = courseName;
-        this.credits = credits;
-    }
+    // // Constructor for Course class.
+    // public Course(String courseCode, String courseName, int credits) {
+    //     this.courseCode = courseCode;
+    //     this.courseName = courseName;
+    //     this.credits = credits;
+    // }
 
     // Mutator methods
     public void setCourseCode(String courseCode) {
@@ -43,4 +43,6 @@ public class Course {
     public String toString() {
         return "Course Name = " + courseName + ", Course Code = " + courseCode + ", Credits = " + credits;
     }
+
+    
 }
