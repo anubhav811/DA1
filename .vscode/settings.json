@@ -1,3 +1,8 @@
 {
-  "java.project.sourcePaths": ["src/DA1/src/com/anubhav", "src/com/anubhav"]
+  "java.project.sourcePaths": [
+    "src/DA1/src/com/anubhav",
+    "src/com/anubhav"
+  ],
+  "code-builder.build.inputFilePath": "c:\\Users\\Anubhav Chachra\\Desktop\\DA1\\src\\com\\anubhav\\input.txt",
+  "code-builder.build.outputFilePath": "c:\\Users\\Anubhav Chachra\\Desktop\\DA1\\src\\com\\anubhav\\output.txt"
 }

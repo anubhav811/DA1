@@ -13,6 +13,7 @@ public class Student {
     private int[] marks;        // int array to store marks.
     private char[] grades;      // char array to store grades.
 
+    
     // Mutator methods
     public void setRegNo(String regNo) {
         this.regNo = regNo;

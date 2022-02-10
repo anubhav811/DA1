@@ -1,0 +1,60 @@
+
+ADDING STUDENT DETAILS
+........................
+
+Enter number of students in system
+Enter register no for student 1 : 
+Enter Name for student 1 : 
+Enter DOB (dd/MM/yyyy) for student 1 : 
+Enter Address for student 1 : 
+Enter Mobile no for student 1 : 
+Enter register no for student 2 : 
+Enter Name for student 2 : 
+Enter DOB (dd/MM/yyyy) for student 2 : 
+Enter Address for student 2 : 
+Enter Mobile no for student 2 : 
+Enter register no for student 3 : 
+Enter Name for student 3 : 
+Enter DOB (dd/MM/yyyy) for student 3 : 
+Enter Address for student 3 : 
+Enter Mobile no for student 3 : 
+Enter register no for student 4 : 
+Enter Name for student 4 : 
+Enter DOB (dd/MM/yyyy) for student 4 : 
+Enter Address for student 4 : 
+Enter Mobile no for student 4 : 
+Enter register no for student 5 : 
+Enter Name for student 5 : 
+Enter DOB (dd/MM/yyyy) for student 5 : 
+Enter Address for student 5 : 
+Enter Mobile no for student 5 : 
+Enter register no for student 6 : 
+Enter Name for student 6 : 
+Enter DOB (dd/MM/yyyy) for student 6 : 
+Enter Address for student 6 : 
+Enter Mobile no for student 6 : 
+Enter register no for student 7 : 
+Enter Name for student 7 : 
+Enter DOB (dd/MM/yyyy) for student 7 : 
+Enter Address for student 7 : 
+Enter Mobile no for student 7 : 
+Enter register no for student 8 : 
+Enter Name for student 8 : 
+Enter DOB (dd/MM/yyyy) for student 8 : 
+Enter Address for student 8 : 
+Enter Mobile no for student 8 : 
+Enter register no for student 9 : 
+Enter Name for student 9 : 
+Enter DOB (dd/MM/yyyy) for student 9 : 
+Enter Address for student 9 : 
+Enter Mobile no for student 9 : 
+Enter register no for student 10 : 
+Enter Name for student 10 : 
+Enter DOB (dd/MM/yyyy) for student 10 : 
+Enter Address for student 10 : 
+Enter Mobile no for student 10 : 
+
+ADDING COURSES
+.....................
+
+Enter number of courses

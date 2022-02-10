@@ -2,24 +2,25 @@
 // Anubhav Chachra
 // 20BIT0104
 
+import java.io.*;
 import java.text.*;
 import java.util.*;
 
 public class Da1 {
 
     // Constants
-    final static int minCredit = 2;
-    final static int maxCredit = 8;
+    final static int minCredit = 12;
+    final static int maxCredit = 24;
 
-    public static void main(String[] args) throws InstantiationException {
+    public static void main(String[] args) throws InstantiationException, IOException {
 
-        Scanner sc = new Scanner(System.in);
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("\nADDING STUDENT DETAILS");
         System.out.println("........................");
         System.out.println("\nEnter number of students in system");
-        int n = sc.nextInt();
 
+        int n = Integer.parseInt(bf.readLine());
         Student[] students = new Student[n];
         ArrayList<String> reg = new ArrayList<>();
         boolean flag = false;
@@ -32,7 +33,7 @@ public class Da1 {
             flag = false;
             while (!flag) {
                 System.out.println("Enter register no for student " + (s + 1) + " : ");
-                String regNo = sc.next();
+                String regNo = bf.readLine();
                 if (reg.contains(regNo)) {
                     System.out.println("Register no already exists");
                 } else {
@@ -43,13 +44,13 @@ public class Da1 {
             }
 
             System.out.println("Enter Name for student " + (s + 1) + " : ");
-            String name = sc.next();
+            String name = bf.readLine();
             students[s].setName(name);
 
             Date dob = null;
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             System.out.println("Enter DOB (dd/MM/yyyy) for student " + (s + 1) + " : ");
-            String input = sc.next();
+            String input = bf.readLine();
             if (null != input && input.trim().length() > 0) {
                 try {
                     dob = format.parse(input);
@@ -61,11 +62,11 @@ public class Da1 {
             students[s].setDob(dob);
 
             System.out.println("Enter Address for student " + (s + 1) + " : ");
-            String addresString = sc.next();
+            String addresString = bf.readLine();
             students[s].setAddress(addresString);
 
             System.out.println("Enter Mobile no for student " + (s + 1) + " : ");
-            String mobileNo = sc.next();
+            String mobileNo = bf.readLine();
             students[s].setMobileNo(mobileNo);
         }
 
@@ -74,7 +75,7 @@ public class Da1 {
         System.out.println("\nADDING COURSES");
         System.out.println(".....................");
         System.out.println("\nEnter number of courses");
-        int c = sc.nextInt();
+        int c = Integer.parseInt(bf.readLine());
 
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<String> coName = new ArrayList<>();
@@ -86,7 +87,7 @@ public class Da1 {
             flag = false;
             while (!flag) {
                 System.out.println("Enter course code for course " + (i + 1) + ": ");
-                String courseCode = sc.next();
+                String courseCode = bf.readLine();
                 if (coCode.contains(courseCode)) {
                     System.out.println("Course code already exists");
                 } else {
@@ -99,7 +100,7 @@ public class Da1 {
             flag = false;
             while (!flag) {
                 System.out.println("Enter course name for course " + (i + 1) + ":");
-                String courseName = sc.next();
+                String courseName = bf.readLine();
                 if (coName.contains(courseName)) {
                     System.out.println("Course name already exists");
                 } else {
@@ -112,7 +113,7 @@ public class Da1 {
             flag = false;
             while (!flag) {
                 System.out.println("Enter course credits for coures " + (i + 1) + ":");
-                int courseCredits = sc.nextInt();
+                int courseCredits = Integer.parseInt(bf.readLine());
                 if (courseCredits == 3 || courseCredits == 4) {
                     courses.get(i).setCredits(courseCredits);
                     flag = true;
@@ -140,7 +141,7 @@ public class Da1 {
                     System.out.println("Total credits registered : " +
                             students[a].getTotalCredits());
                     System.out.println("Enter course code: ");
-                    String cn = sc.next();
+                    String cn = bf.readLine();
 
                     if (coCode.contains(cn)) {
                         if (!(students[a].isCourseAllocated(cn))) {
@@ -163,7 +164,7 @@ public class Da1 {
                                         students[a].getTotalCredits());
                                 System.out.println(
                                         "You have registered your minimum no of credits. Do you want to register formore credits? (y/n)");
-                                String ans = sc.next();
+                                String ans = bf.readLine();
                                 if (ans.equalsIgnoreCase("y")) {
                                 } else if (ans.equalsIgnoreCase("n")) {
                                     check = false;
@@ -198,7 +199,7 @@ public class Da1 {
             System.out.println("4. Exit Program");
             System.out.println("\nEnter your choice below:");
 
-            choice = sc.nextInt();
+            choice = Integer.parseInt(bf.readLine());
             switch (choice) {
                 case 1:
                     System.out.println();
@@ -220,27 +221,19 @@ public class Da1 {
             }
         } while (choice != 4);
 
-        // Allocating courses to students.
-
-        // sc.close();
-        // // Displaying students details.
-        // printStudentDetails(students);
-
-        // // // Students who have registered for the same courses.
-        // // studentsWithSameCourse(students);
-
-        // // // Results of students
-        // studentResult(students);
+        bf.close();
 
         // End of main method.
     }
 
+    // Method to print students details
     static void printStudentDetails(Student[] students) {
         for (Student s : students) {
             System.out.println(s.toString());
         }
     }
 
+    // Method to print details of students registered for the same courses
     static void studentsWithSameCourse(Student[] students) {
         int flag = 0;
         for (int i = 0; i < students.length; i++) {
@@ -258,6 +251,7 @@ public class Da1 {
 
             }
         }
+
         // in case no students have common courses.
         if (flag == 0) {
             System.out.println("No students are having the same courses");
@@ -265,6 +259,7 @@ public class Da1 {
         }
     }
 
+    // Method to print students results
     static void studentsResult(Student[] students) {
         for (Student s : students) {
             s.setMarks();
